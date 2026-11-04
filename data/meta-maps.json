@@ -1,0 +1,153 @@
+{
+  "_note": "Recommandations indicatives basées sur les tendances générales du jeu compétitif. La méta change à chaque patch : si une info est dépassée, propose une mise à jour via une pull request (voir CONTRIBUTING.md). Les noms d'agents et de maps doivent être écrits exactement comme dans le jeu.",
+  "maps": {
+    "Abyss": {
+      "resume": "Map sans rebords : on peut tomber dans le vide sur les côtés. Elle est très verticale, avec des cordes et des passerelles.",
+      "caracteristiques": ["Bords sans protection (chute mortelle)", "Forte verticalité", "Long mid"],
+      "agents": [
+        { "nom": "Omen", "pourquoi": "Ses fumigènes et sa téléportation fonctionnent bien sur une map verticale aux nombreux recoins." },
+        { "nom": "Astra", "pourquoi": "Son contrôle global aide à couvrir des espaces larges sans se déplacer." },
+        { "nom": "Sova", "pourquoi": "Les grandes zones ouvertes sont faciles à scanner avec sa flèche ou son drone." },
+        { "nom": "KAY/O", "pourquoi": "Ses flashs et son couteau facilitent l'entrée sur des sites bien défendus." },
+        { "nom": "Cypher", "pourquoi": "Surveille les longues entrées et les flancs avec sa caméra et ses fils." },
+        { "nom": "Jett", "pourquoi": "Son dash et son saut profitent de la verticalité et des longues lignes de vue (Operator)." }
+      ],
+      "compo": ["Omen", "Sova", "KAY/O", "Cypher", "Jett"]
+    },
+    "Ascent": {
+      "resume": "Map à deux sites avec un mid très ouvert qui donne accès aux deux sites. Les défenseurs peuvent fermer les portes de A et de B.",
+      "caracteristiques": ["Mid ouvert et décisif", "Portes fermables sur les deux sites", "Lignes de vue moyennes à longues"],
+      "agents": [
+        { "nom": "Omen", "pourquoi": "Fumigènes à longue portée et téléportation : idéal pour couper le mid et Market." },
+        { "nom": "Astra", "pourquoi": "Ses étoiles couvrent toute la map : elle peut fumer A, B et le mid dans le même round." },
+        { "nom": "Sova", "pourquoi": "Le mid et les sites sont ouverts : sa flèche de reconnaissance révèle beaucoup de terrain. Ascent est réputée pour ses lineups de Sova." },
+        { "nom": "KAY/O", "pourquoi": "Son couteau coupe les utilitaires des sentinelles (Killjoy, Cypher) avant une exécution sur site." },
+        { "nom": "Killjoy", "pourquoi": "Sites compacts avec peu d'entrées : sa tourelle et ses bots tiennent un site presque seuls." },
+        { "nom": "Cypher", "pourquoi": "Les entrées étroites (A Main, B Main) se prêtent bien aux fils de détente." },
+        { "nom": "Jett", "pourquoi": "Map ouverte, adaptée à l'Operator : le dash permet de prendre un duel puis de repartir à couvert." }
+      ],
+      "compo": ["Omen", "Sova", "KAY/O", "Killjoy", "Jett"]
+    },
+    "Bind": {
+      "resume": "Pas de mid : les deux sites sont reliés par des téléporteurs à sens unique. Les couloirs sont étroits et les combats se jouent souvent de près.",
+      "caracteristiques": ["Pas de mid", "Deux téléporteurs", "Couloirs étroits"],
+      "agents": [
+        { "nom": "Brimstone", "pourquoi": "Pose trois fumigènes très vite depuis la carte, ce qui suffit pour couvrir les entrées d'un site de Bind." },
+        { "nom": "Viper", "pourquoi": "Son mur coupe les lignes de vue sur A ou B et son orbe gêne les reprises de site." },
+        { "nom": "Skye", "pourquoi": "Ses flashs guidées passent bien les angles serrés à l'entrée des sites." },
+        { "nom": "Fade", "pourquoi": "Ses compétences de traque débusquent les défenseurs cachés dans les recoins des sites." },
+        { "nom": "Gekko", "pourquoi": "Ses créatures nettoient les angles serrés et peuvent poser ou désamorcer le spike." },
+        { "nom": "Raze", "pourquoi": "Espaces confinés : ses explosifs sont redoutables pour vider les petites salles." },
+        { "nom": "Cypher", "pourquoi": "Sa caméra et ses fils surveillent les téléporteurs et les flancs." }
+      ],
+      "compo": ["Brimstone", "Viper", "Skye", "Raze", "Cypher"]
+    },
+    "Breeze": {
+      "resume": "Une des plus grandes maps du jeu : immenses espaces ouverts et lignes de vue très longues.",
+      "caracteristiques": ["Espaces très ouverts", "Lignes de vue très longues", "Mid large"],
+      "agents": [
+        { "nom": "Viper", "pourquoi": "Son mur, très long, est l'un des rares moyens de couper les grands espaces de Breeze." },
+        { "nom": "Harbor", "pourquoi": "Ses murs d'eau couvrent de longues distances : une alternative à Viper." },
+        { "nom": "Sova", "pourquoi": "Sa flèche couvre une énorme zone sur des sites aussi ouverts." },
+        { "nom": "KAY/O", "pourquoi": "Ses flashs aident à prendre de grands espaces difficiles à nettoyer." },
+        { "nom": "Cypher", "pourquoi": "Avec autant de terrain à couvrir, sa caméra et ses fils donnent l'info sur les flancs." },
+        { "nom": "Chamber", "pourquoi": "Mise sur les duels à longue distance avec ses armes de précision." },
+        { "nom": "Jett", "pourquoi": "Map idéale pour l'Operator grâce à ses longues lignes de vue." }
+      ],
+      "compo": ["Viper", "Sova", "KAY/O", "Cypher", "Jett"]
+    },
+    "Fracture": {
+      "resume": "Les attaquants apparaissent des deux côtés de la map et peuvent prendre les défenseurs en tenaille. Une tyrolienne relie les deux moitiés côté défense.",
+      "caracteristiques": ["Attaquants des deux côtés", "Attaques en tenaille", "Tyrolienne au centre"],
+      "agents": [
+        { "nom": "Brimstone", "pourquoi": "Ses fumigènes rapides couvrent les deux entrées d'un site pendant une attaque en tenaille." },
+        { "nom": "Breach", "pourquoi": "Ses étourdissements traversent les murs : parfait pour lancer une attaque en tenaille." },
+        { "nom": "Fade", "pourquoi": "Révèle les défenseurs avant l'entrée sur site." },
+        { "nom": "Neon", "pourquoi": "Sa vitesse permet d'entrer vite sur des sites aux entrées étroites." },
+        { "nom": "Raze", "pourquoi": "Les couloirs étroits favorisent ses explosifs." },
+        { "nom": "Cypher", "pourquoi": "Surveille un flanc pendant que l'équipe défend l'autre côté." }
+      ],
+      "compo": ["Brimstone", "Breach", "Fade", "Neon", "Cypher"]
+    },
+    "Haven": {
+      "resume": "Trois sites (A, B, C) et un mid qui mène à B. Les défenseurs ont beaucoup de terrain à couvrir et les rotations sont longues.",
+      "caracteristiques": ["Trois sites", "Rotations longues en défense", "Garage, passage clé vers C"],
+      "agents": [
+        { "nom": "Omen", "pourquoi": "Sa téléportation et son ultime facilitent les rotations entre trois sites." },
+        { "nom": "Astra", "pourquoi": "Contrôle global : elle aide n'importe quel site sans s'y déplacer." },
+        { "nom": "Sova", "pourquoi": "Les longs couloirs (A Long, C Long) sont faciles à scanner." },
+        { "nom": "Breach", "pourquoi": "Ses compétences traversent les murs : utile pour éclater Garage ou les entrées de site." },
+        { "nom": "Killjoy", "pourquoi": "Tient un site seule, ce qui libère des coéquipiers pour les deux autres." },
+        { "nom": "Cypher", "pourquoi": "Repère les poussées et les flancs avec ses fils et sa caméra." },
+        { "nom": "Jett", "pourquoi": "Longues lignes de vue sur A Long et C Long, adaptées à l'Operator." }
+      ],
+      "compo": ["Omen", "Sova", "Breach", "Killjoy", "Jett"]
+    },
+    "Icebox": {
+      "resume": "Map à deux sites avec beaucoup de verticalité et de longues lignes de vue, surtout sur le site B.",
+      "caracteristiques": ["Longues lignes de vue", "Site B très ouvert", "Nombreuses positions en hauteur"],
+      "agents": [
+        { "nom": "Viper", "pourquoi": "Presque indispensable : son mur coupe le site B en deux ou isole A." },
+        { "nom": "Sova", "pourquoi": "Grands espaces dégagés, parfaits pour la flèche de reconnaissance." },
+        { "nom": "KAY/O", "pourquoi": "Ses flashs et son couteau aident à entrer sur des sites très défendus." },
+        { "nom": "Killjoy", "pourquoi": "Verrouille un site et son ultime force les attaquants à le quitter." },
+        { "nom": "Jett", "pourquoi": "Longues lignes de vue et positions en hauteur : Operator et saut vertical." }
+      ],
+      "compo": ["Viper", "Sova", "KAY/O", "Killjoy", "Jett"]
+    },
+    "Lotus": {
+      "resume": "Trois sites (A, B, C), des portes rotatives et un mur destructible. Les couloirs sont étroits et les rotations courtes.",
+      "caracteristiques": ["Trois sites", "Portes rotatives et mur destructible", "Rotations courtes"],
+      "agents": [
+        { "nom": "Omen", "pourquoi": "Fumigènes et téléportation adaptés à une map à trois sites aux rotations courtes." },
+        { "nom": "Viper", "pourquoi": "Son mur aide à prendre A ou C ; souvent jouée avec un second contrôleur." },
+        { "nom": "Fade", "pourquoi": "Révèle les défenseurs dans les nombreux recoins des sites." },
+        { "nom": "Breach", "pourquoi": "Les murs des sites laissent passer ses étourdissements." },
+        { "nom": "Killjoy", "pourquoi": "Verrouille un site seule, précieux quand il y en a trois à défendre." },
+        { "nom": "Raze", "pourquoi": "Ses explosifs vident les petits espaces et permettent des entrées rapides." }
+      ],
+      "compo": ["Omen", "Viper", "Fade", "Killjoy", "Raze"]
+    },
+    "Pearl": {
+      "resume": "Map à deux sites avec un long mid et de nombreux murs. Pas de mécanique spéciale : tout repose sur l'utilitaire classique.",
+      "caracteristiques": ["Long mid", "Aucune mécanique spéciale", "Sites avec plusieurs entrées"],
+      "agents": [
+        { "nom": "Astra", "pourquoi": "Ses étoiles couvrent tout le mid et les deux sites." },
+        { "nom": "Viper", "pourquoi": "Son mur coupe le long mid ou B Long." },
+        { "nom": "Fade", "pourquoi": "Révèle les défenseurs cachés dans les recoins des sites." },
+        { "nom": "KAY/O", "pourquoi": "Ses flashs aident à prendre le mid et les entrées de site." },
+        { "nom": "Killjoy", "pourquoi": "Bloque une longue entrée (comme B Long) avec sa tourelle et ses bots." },
+        { "nom": "Jett", "pourquoi": "Longues lignes de vue dans le mid, adaptées à l'Operator." },
+        { "nom": "Neon", "pourquoi": "Son sprint permet de traverser vite le long mid ou B Long." }
+      ],
+      "compo": ["Astra", "Fade", "KAY/O", "Killjoy", "Jett"]
+    },
+    "Split": {
+      "resume": "Map verticale avec des cordes et un mid étroit. Les sites sont entourés de positions en hauteur difficiles à prendre.",
+      "caracteristiques": ["Forte verticalité (cordes, Heaven)", "Mid étroit et disputé", "Combats rapprochés"],
+      "agents": [
+        { "nom": "Omen", "pourquoi": "Ses fumigènes bloquent les positions en hauteur pendant l'entrée sur site." },
+        { "nom": "Viper", "pourquoi": "Son mur coupe les lignes de vue vers les sites ; souvent jouée avec un second contrôleur." },
+        { "nom": "Skye", "pourquoi": "Ses flashs aident à prendre le mid et les cordes." },
+        { "nom": "Breach", "pourquoi": "Ses étourdissements traversent les murs fins autour des sites." },
+        { "nom": "Cypher", "pourquoi": "Les entrées étroites sont faciles à piéger." },
+        { "nom": "Raze", "pourquoi": "La verticalité joue pour elle : ses explosifs la propulsent en hauteur et vident les petits espaces." },
+        { "nom": "Jett", "pourquoi": "Sa mobilité verticale permet de prendre des positions surprenantes." }
+      ],
+      "compo": ["Omen", "Viper", "Skye", "Cypher", "Raze"]
+    },
+    "Sunset": {
+      "resume": "Map à deux sites assez compacte, où le mid est décisif pour les rotations des deux équipes.",
+      "caracteristiques": ["Mid décisif", "Map compacte", "Rotations rapides"],
+      "agents": [
+        { "nom": "Omen", "pourquoi": "Fumigènes à longue portée pour couvrir le mid et les sites." },
+        { "nom": "Breach", "pourquoi": "Entrées étroites et murs fins, parfaits pour ses étourdissements." },
+        { "nom": "Fade", "pourquoi": "Révèle les défenseurs avant une exécution sur site." },
+        { "nom": "Cypher", "pourquoi": "Sa caméra et ses fils tiennent le mid et les flancs." },
+        { "nom": "Raze", "pourquoi": "Combats rapprochés dans les couloirs, idéal pour ses explosifs." },
+        { "nom": "Neon", "pourquoi": "Sa vitesse permet de prendre le mid tôt dans le round." }
+      ],
+      "compo": ["Omen", "Breach", "Fade", "Cypher", "Raze"]
+    }
+  }
+}

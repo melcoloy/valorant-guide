@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agents · Valo Atlas</title>
+  <meta name="description" content="Tous les agents de Valorant avec leurs rôles, leurs compétences et les maps où ils brillent.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header id="entete"></header>
+  <main>
+    <div class="conteneur">
+      <div class="titre-page">
+        <div class="surtitre">Encyclopédie</div>
+        <h1>Agents</h1>
+        <p>Clique sur un agent pour voir ses compétences, les maps où il est le plus utile et ses lineups.</p>
+      </div>
+      <div class="barre-outils">
+        <input class="champ" type="search" id="recherche" placeholder="Rechercher un agent…" aria-label="Rechercher un agent">
+        <div class="puces" id="filtres-roles" role="group" aria-label="Filtrer par rôle"></div>
+      </div>
+      <div id="contenu"></div>
+      <dialog class="fiche" id="fiche" aria-labelledby="fiche-titre"></dialog>
+    </div>
+  </main>
+  <footer id="pied"></footer>
+  <script type="module" src="assets/js/agents.js"></script>
+</body>
+</html>

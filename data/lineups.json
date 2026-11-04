@@ -1,0 +1,80 @@
+{
+  "_note": "Base de lineups du projet. Les entrées marquées \"exemple\": true montrent le format : leurs positions sont approximatives et doivent être remplacées par de vrais lineups testés en jeu. Utilise l'éditeur de la page Lineups pour générer une entrée, puis ajoute-la ici via une pull request (voir CONTRIBUTING.md).",
+  "lineups": [
+    {
+      "id": "ascent-sova-reco-b-main",
+      "map": "Ascent",
+      "agent": "Sova",
+      "slot": "Ability2",
+      "camp": "attaque",
+      "site": "B",
+      "titre": "Reconnaissance du site B depuis B Main",
+      "etapes": [
+        "Se placer au fond de B Main, à couvert.",
+        "Viser au-dessus du mur qui donne sur le site B.",
+        "Tirer la flèche pour qu'elle se plante au fond du site et révèle les défenseurs."
+      ],
+      "depuis": { "x": 0.405, "y": 0.712 },
+      "vers": { "x": 0.285, "y": 0.737 },
+      "video": "",
+      "auteur": "valo-atlas",
+      "exemple": true
+    },
+    {
+      "id": "ascent-sova-reco-a-main",
+      "map": "Ascent",
+      "agent": "Sova",
+      "slot": "Ability2",
+      "camp": "attaque",
+      "site": "A",
+      "titre": "Reconnaissance du site A depuis A Main",
+      "etapes": [
+        "Se placer dans A Main, avant la sortie sur le site.",
+        "Viser le haut du site A pour couvrir le site et Rafters.",
+        "Tirer la flèche puis entrer sur le site avec l'équipe pendant le scan."
+      ],
+      "depuis": { "x": 0.484, "y": 0.201 },
+      "vers": { "x": 0.35, "y": 0.142 },
+      "video": "",
+      "auteur": "valo-atlas",
+      "exemple": true
+    },
+    {
+      "id": "ascent-killjoy-alarme-b-main",
+      "map": "Ascent",
+      "agent": "Killjoy",
+      "slot": "Ability1",
+      "camp": "defense",
+      "site": "B",
+      "titre": "Bot-alarme à la sortie de B Main",
+      "etapes": [
+        "Depuis le site B, poser le bot-alarme contre le mur à la sortie de B Main.",
+        "Le bot repère les attaquants qui entrent sur le site et les rend vulnérables."
+      ],
+      "depuis": { "x": 0.315, "y": 0.73 },
+      "vers": { "x": 0.375, "y": 0.716 },
+      "video": "",
+      "auteur": "valo-atlas",
+      "exemple": true
+    },
+    {
+      "id": "bind-brimstone-molly-a-post-plant",
+      "map": "Bind",
+      "agent": "Brimstone",
+      "slot": "Ability1",
+      "camp": "attaque",
+      "site": "A",
+      "titre": "Bombe incendiaire sur le spike (post-plant) depuis A Short",
+      "etapes": [
+        "Après avoir posé le spike sur A, reculer dans A Short.",
+        "Viser au-dessus du mur en direction du spike.",
+        "Lancer la bombe incendiaire quand un défenseur commence à désamorcer."
+      ],
+      "depuis": { "x": 0.624, "y": 0.497 },
+      "vers": { "x": 0.734, "y": 0.333 },
+      "video": "",
+      "auteur": "valo-atlas",
+      "exemple": true
+    }
+  ]
+}
