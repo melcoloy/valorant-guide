@@ -1,0 +1,22 @@
+name: Vérifier les données
+
+on:
+  push:
+    paths:
+      - "data/**"
+      - "scripts/valider_donnees.py"
+  pull_request:
+    paths:
+      - "data/**"
+      - "scripts/valider_donnees.py"
+
+jobs:
+  valider:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Vérifier lineups.json et meta-maps.json
+        run: python scripts/valider_donnees.py
