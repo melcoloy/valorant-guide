@@ -388,7 +388,8 @@ dialog.fiche::backdrop { background: rgba(0, 0, 0, 0.7); }
 }
 .liste-maps-bonnes a:hover { background: var(--surface-3); }
 .liste-maps-bonnes strong { font-family: var(--font-titre); font-size: 1.05rem; text-transform: uppercase; }
-.liste-maps-bonnes span { color: var(--text-2); font-size: 0.88rem; display: block; }
+.liste-maps-bonnes span:not(.badge) { color: var(--text-2); font-size: 0.88rem; display: block; }
+.liste-maps-bonnes .badge { margin-left: 6px; vertical-align: 2px; }
 
 /* --- Détail d'une map --------------------------------------------------- */
 .lien-retour { display: inline-block; margin-bottom: 16px; color: var(--text-2); text-decoration: none; }

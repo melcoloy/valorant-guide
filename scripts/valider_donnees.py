@@ -20,6 +20,8 @@ RACINE = Path(__file__).resolve().parent.parent
 CAMPS = {"attaque", "defense"}
 SITES = {"A", "B", "C", "Mid"}
 SLOTS = {"Grenade", "Ability1", "Ability2", "Ultimate"}
+ROLES = ["Contrôleur", "Initiateur", "Sentinelle", "Duelliste"]
+MIN_PAR_ROLE = 2  # chaque map doit conseiller au moins 2 agents par rôle
 
 erreurs = []
 
@@ -38,13 +40,16 @@ def charger(nom):
 
 
 def noms_du_jeu():
-    """Récupère les noms d'agents et de maps depuis l'API (ou None si hors ligne)."""
+    """Récupère les agents (nom → rôle) et les maps depuis l'API (ou None si hors ligne)."""
     try:
         def lire(url):
             with urllib.request.urlopen(url, timeout=15) as r:
                 return json.load(r)["data"]
 
-        agents = {a["displayName"] for a in lire("https://valorant-api.com/v1/agents?isPlayableCharacter=true")}
+        agents = {
+            a["displayName"]: a["role"]["displayName"]
+            for a in lire("https://valorant-api.com/v1/agents?isPlayableCharacter=true&language=fr-FR")
+        }
         maps = {m["displayName"] for m in lire("https://valorant-api.com/v1/maps") if m.get("tacticalDescription")}
         return agents, maps
     except Exception as e:  # pas de réseau : on saute cette vérification
@@ -118,6 +123,13 @@ def verifier_meta(donnees, agents, maps):
                 erreur(f"{ou} : agent « {reco['nom']} » inconnu.")
         if len(noms) != len(set(noms)):
             erreur(f"{ou} : un agent apparaît deux fois.")
+        if agents:
+            for role in ROLES:
+                n = sum(1 for nom in noms if agents.get(nom) == role)
+                if n < MIN_PAR_ROLE:
+                    erreur(f"{ou} : {n} agent(s) {role.lower()}(s) conseillé(s), il en faut au moins {MIN_PAR_ROLE}.")
+        if "aConfirmer" in infos and not isinstance(infos["aConfirmer"], bool):
+            erreur(f"{ou} : « aConfirmer » doit valoir true ou false.")
         compo = infos.get("compo", [])
         if compo and len(compo) != 5:
             erreur(f"{ou} : la compo doit contenir 5 agents (elle en a {len(compo)}).")

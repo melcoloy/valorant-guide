@@ -62,10 +62,12 @@ Tout est dans `data/meta-maps.json`. Pour chaque map :
 }
 ```
 
+- Conseille **au moins 2 agents par rôle** (contrôleur, initiateur, sentinelle, duelliste). Le script de vérification le contrôle.
 - Explique toujours **pourquoi** l'agent est bon sur la map (forme de la map, lignes de vue, nombre de sites…). C'est ce qui rend la page utile.
 - Le rôle de l'agent (contrôleur, initiateur…) est récupéré automatiquement : pas besoin de l'écrire.
 - La `compo` contient exactement 5 agents.
 - Une map absente du fichier s'affiche « À compléter » sur le site.
+- `"aConfirmer": true` signale une analyse déduite de la forme de la map, pas encore de l'expérience en jeu (c'est le cas de Corrode et Summit). Le site affiche alors « À confirmer ». Si tu joues ces maps et que les conseils te semblent justes, ou après les avoir corrigés, retire cette ligne.
 
 ## Vérifier avant d'envoyer
 

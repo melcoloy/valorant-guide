@@ -93,7 +93,9 @@ function dessinerDetail(map) {
           <h2>Le style de la map</h2>
           ${
             infos
-              ? `<p>${echapper(infos.resume)}</p>
+              ? `${infos.aConfirmer ? `<div class="note" style="margin-bottom:12px"><span class="badge badge-alerte">À confirmer</span>
+                   Analyse déduite de la forme de la map, pas encore de l'expérience en jeu. Tu y joues ? Corrige-la dans <code>data/meta-maps.json</code>.</div>` : ""}
+                 <p>${echapper(infos.resume)}</p>
                  <div class="carac">${(infos.caracteristiques || []).map((c) => `<span class="badge">${echapper(c)}</span>`).join("")}</div>`
               : `<p class="muet">Pas encore d'analyse pour cette map. Ajoute-la dans <code>data/meta-maps.json</code> !</p>`
           }

@@ -35,7 +35,8 @@ async function demarrer() {
     return `
       <tr>
         <th scope="row" class="nom-map"><a href="maps.html#${encodeURIComponent(m.nom)}">${echapper(m.nom)}</a>
-          ${infos ? "" : `<div><span class="badge badge-alerte">À compléter</span></div>`}</th>
+          ${!infos ? `<div><span class="badge badge-alerte">À compléter</span></div>`
+            : infos.aConfirmer ? `<div><span class="badge badge-alerte" title="Analyse déduite de la forme de la map, à confirmer en jeu">À confirmer</span></div>` : ""}</th>
         ${cellules.join("")}
       </tr>`;
   });

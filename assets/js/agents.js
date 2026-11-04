@@ -94,7 +94,7 @@ contenu.addEventListener("click", (e) => {
 // Maps où l'agent est recommandé (d'après data/meta-maps.json)
 function mapsConseillees(nomAgent) {
   return Object.entries(meta.maps || {})
-    .map(([map, infos]) => ({ map, reco: (infos.agents || []).find((r) => r.nom === nomAgent) }))
+    .map(([map, infos]) => ({ map, aConfirmer: infos.aConfirmer, reco: (infos.agents || []).find((r) => r.nom === nomAgent) }))
     .filter((x) => x.reco);
 }
 
@@ -138,8 +138,10 @@ function ouvrirFiche(nom) {
           bonnesMaps.length
             ? `<div class="liste-maps-bonnes">${bonnesMaps
                 .map(
-                  ({ map, reco }) =>
-                    `<a href="maps.html#${encodeURIComponent(map)}"><strong>${echapper(map)}</strong><span>${echapper(reco.pourquoi)}</span></a>`
+                  ({ map, reco, aConfirmer }) =>
+                    `<a href="maps.html#${encodeURIComponent(map)}"><strong>${echapper(map)}</strong>${
+                      aConfirmer ? ` <span class="badge badge-alerte">À confirmer</span>` : ""
+                    }<span>${echapper(reco.pourquoi)}</span></a>`
                 )
                 .join("")}</div>`
             : `<p class="muet">Pas encore de recommandation pour cet agent. Tu peux en ajouter dans <code>data/meta-maps.json</code>.</p>`

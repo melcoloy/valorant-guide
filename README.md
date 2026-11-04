@@ -2,7 +2,9 @@
 
 Encyclopédie de fan pour **Valorant** : les agents, les maps, les agents à jouer sur chaque map, une base de lineups ouverte aux contributions et une analyse chiffrée des armes.
 
-Le site est fait en HTML, CSS et JavaScript, sans framework ni étape de compilation. Il peut donc être hébergé gratuitement sur GitHub Pages.
+**Site en ligne : https://melcoloy.github.io/valorant-guide/**
+
+Le site est fait en HTML, CSS et JavaScript, sans framework ni étape de compilation. Il est hébergé gratuitement sur GitHub Pages.
 
 ![Grille des agents](docs/captures/agents.jpg)
 
@@ -12,7 +14,7 @@ Le site est fait en HTML, CSS et JavaScript, sans framework ni étape de compila
 |---|---|
 | **Agents** | Tous les agents, filtrables par rôle. Chaque fiche montre les compétences avec leur touche (C, Q, E, X), les maps où l'agent est conseillé et ses lineups. |
 | **Maps** | Les maps compétitives, avec la minimap annotée du nom de chaque zone (A Main, Mid Courtyard…), le style de la map, une compo type et les agents conseillés. |
-| **Agents par map** | Un tableau maps × rôles qui indique, pour chaque agent, pourquoi il est bon sur cette map, et un classement des agents les plus polyvalents. |
+| **Agents par map** | Un tableau maps × rôles, avec au moins deux agents conseillés par rôle sur chaque map et la raison de chaque choix, plus un classement des agents les plus polyvalents. |
 | **Lineups** | Une base de lineups filtrable par map, agent, camp et site, affichés en flèches sur la minimap. Un éditeur permet de placer ses propres points et génère l'entrée JSON à ajouter. |
 | **Armes** | Dégâts selon la distance, nombre de balles et temps pour tuer (TTK) selon le bouclier de la cible et la zone visée, avec un tableau triable et des graphiques. |
 
@@ -82,7 +84,7 @@ python scripts/valider_donnees.py
 ## Idées pour la suite
 
 - Ajouter de vrais lineups testés en jeu (les 4 actuels sont des exemples) avec des vidéos.
-- Compléter `meta-maps.json` pour les maps récentes (Corrode, Summit…) et les nouveaux agents.
+- Confirmer en jeu les recommandations de Corrode et Summit (marquées « À confirmer ») et ajouter les agents récents.
 - Un générateur de compo aléatoire qui respecte les rôles.
 - Un quiz : reconnaître un agent à partir d'une compétence, ou une map à partir de sa minimap.
 - Comparer les armes avec le recul et la précision du premier tir (`firstBulletAccuracy` dans l'API).
