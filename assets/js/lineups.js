@@ -140,8 +140,16 @@ function dessinerColonne() {
   minimap.dessinerLineups(liste, etat.actif);
   const colonne = document.getElementById("colonne");
 
+  // Tant que la base ne contient que les exemples de départ, on le dit clairement
+  // et on invite à contribuer.
+  const avertissement = lineups.every((l) => l.exemple)
+    ? `<div class="note">La base ne contient pour l'instant que des <strong>exemples</strong> aux positions approximatives.
+        Tu connais un lineup fiable ? Ajoute-le avec « Proposer un lineup » puis une
+        <a href="${URL_DEPOT}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">pull request</a>.</div>`
+    : "";
+
   if (!liste.length) {
-    colonne.innerHTML = `
+    colonne.innerHTML = `${avertissement}
       <div class="vide">
         Aucun lineup pour ces filtres sur ${echapper(etat.map)}.<br>
         Sois le premier à en proposer un avec le bouton « Proposer un lineup » !
@@ -149,7 +157,7 @@ function dessinerColonne() {
     return;
   }
 
-  colonne.innerHTML = `<div class="liste-lineups">${liste.map(carteLineup).join("")}</div>`;
+  colonne.innerHTML = `${avertissement}<div class="liste-lineups">${liste.map(carteLineup).join("")}</div>`;
   colonne.querySelectorAll(".carte-lineup").forEach((carte) => {
     const activer = () => {
       etat.actif = etat.actif === carte.dataset.id ? null : carte.dataset.id;

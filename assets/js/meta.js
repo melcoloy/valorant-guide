@@ -55,7 +55,9 @@ async function demarrer() {
 
   contenu.innerHTML = `
     <div class="panneau">
-      <p class="muet" style="margin-top:0">Survole (ou touche) une icône pour lire pourquoi l'agent est conseillé sur cette map.</p>
+      <p class="muet" style="margin-top:0">Survole (ou touche) une icône pour lire pourquoi l'agent est conseillé sur cette map.${
+        meta.miseAJour ? ` Recommandations relues le ${echapper(new Date(meta.miseAJour).toLocaleDateString("fr-FR"))} : la méta change à chaque patch.` : ""
+      }</p>
       <div class="table-defile" style="border:0">
         <table class="matrice">
           <thead>

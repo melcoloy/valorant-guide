@@ -48,22 +48,38 @@ function ecrireCache(cle, donnees) {
   }
 }
 
-async function telecharger(chemin) {
-  const reponse = await fetch(`${BASE}/${chemin}`);
-  if (!reponse.ok) throw new Error(`L'API a répondu ${reponse.status} pour ${chemin}`);
-  const json = await reponse.json();
-  return json.data;
+// Télécharge depuis l'API. Si elle est injoignable, on se rabat sur la copie
+// de secours enregistrée dans data/api/ (voir scripts/instantane_api.py).
+async function telecharger(chemin, secours) {
+  try {
+    const reponse = await fetch(`${BASE}/${chemin}`);
+    if (!reponse.ok) throw new Error(`L'API a répondu ${reponse.status} pour ${chemin}`);
+    const json = await reponse.json();
+    return { donnees: json.data, depuisSecours: false };
+  } catch (erreur) {
+    console.warn(`valorant-api.com indisponible, utilisation de data/api/${secours}.json`, erreur);
+    const reponse = await fetch(`data/api/${secours}.json`).catch(() => null);
+    if (!reponse?.ok) throw erreur;
+    const json = await reponse.json();
+    // Prévient la page (ui.js affiche un bandeau) que les données peuvent dater un peu.
+    window.dispatchEvent(new CustomEvent("valo-atlas:secours", { detail: { date: json.date } }));
+    return { donnees: json.data, depuisSecours: true };
+  }
 }
 
 // Évite de lancer deux fois le même téléchargement sur une même page.
+// `transformer` simplifie la réponse brute de l'API.
 const enCours = new Map();
-function avecCache(cle, charger) {
+function avecCache(cle, chemin, transformer) {
   if (enCours.has(cle)) return enCours.get(cle);
   const promesse = (async () => {
     const cache = lireCache(cle);
     if (cache) return cache;
-    const donnees = await charger();
-    ecrireCache(cle, donnees);
+    const { donnees: brut, depuisSecours } = await telecharger(chemin, cle);
+    const donnees = transformer(brut);
+    // On ne met pas en cache la copie de secours : à la prochaine visite,
+    // on retentera l'API pour avoir des données à jour.
+    if (!depuisSecours) ecrireCache(cle, donnees);
     return donnees;
   })();
   enCours.set(cle, promesse);
@@ -73,9 +89,8 @@ function avecCache(cle, charger) {
 // --- Agents ----------------------------------------------------------------
 
 export function getAgents() {
-  return avecCache("agents", async () => {
-    const brut = await telecharger(`agents?isPlayableCharacter=true&language=${LANGUE}`);
-    return brut
+  return avecCache("agents", `agents?isPlayableCharacter=true&language=${LANGUE}`, (brut) =>
+    brut
       .map((a) => ({
         uuid: a.uuid,
         nom: a.displayName,
@@ -98,8 +113,8 @@ export function getAgents() {
             icone: c.displayIcon,
           })),
       }))
-      .sort((x, y) => x.nom.localeCompare(y.nom, "fr"));
-  });
+      .sort((x, y) => x.nom.localeCompare(y.nom, "fr"))
+  );
 }
 
 // --- Maps ------------------------------------------------------------------
@@ -123,9 +138,7 @@ function nomCallout(c) {
 }
 
 export function getMaps() {
-  return avecCache("maps", async () => {
-    const brut = await telecharger(`maps?language=${LANGUE}`);
-    return (
+  return avecCache("maps", `maps?language=${LANGUE}`, (brut) =>
       brut
         // On ne garde que les maps compétitives (sites A/B ou A/B/C + minimap)
         .filter((m) => m.tacticalDescription && m.displayIcon && m.callouts && m.callouts.length)
@@ -146,16 +159,14 @@ export function getMaps() {
           })),
         }))
         .sort((x, y) => x.nom.localeCompare(y.nom, "fr"))
-    );
-  });
+  );
 }
 
 // --- Armes -----------------------------------------------------------------
 
 export function getArmes() {
-  return avecCache("armes", async () => {
-    const brut = await telecharger(`weapons?language=${LANGUE}`);
-    return brut
+  return avecCache("weapons", `weapons?language=${LANGUE}`, (brut) =>
+    brut
       .filter((w) => w.weaponStats && w.shopData)
       .map((w) => {
         const s = w.weaponStats;
@@ -180,8 +191,8 @@ export function getArmes() {
           })),
         };
       })
-      .sort((x, y) => x.prix - y.prix || x.nom.localeCompare(y.nom, "fr"));
-  });
+      .sort((x, y) => x.prix - y.prix || x.nom.localeCompare(y.nom, "fr"))
+  );
 }
 
 // --- Données du projet (fichiers JSON dans /data) ---------------------------

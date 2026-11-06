@@ -1,14 +1,22 @@
-name: Vérifier les données
+name: Vérifier les données et le code
 
 on:
   push:
     paths:
       - "data/**"
-      - "scripts/valider_donnees.py"
+      - "scripts/**"
+      - "assets/js/**"
+      - "tests/**"
+      - "package.json"
+      - ".github/workflows/**"
   pull_request:
     paths:
       - "data/**"
-      - "scripts/valider_donnees.py"
+      - "scripts/**"
+      - "assets/js/**"
+      - "tests/**"
+      - "package.json"
+      - ".github/workflows/**"
 
 jobs:
   valider:
@@ -20,3 +28,13 @@ jobs:
           python-version: "3.12"
       - name: Vérifier lineups.json et meta-maps.json
         run: python scripts/valider_donnees.py
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Tests des calculs et du repli hors ligne
+        run: npm test

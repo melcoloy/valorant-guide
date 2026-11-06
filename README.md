@@ -53,20 +53,25 @@ valorant-guide/
 │   ├── css/style.css         # tout le style (couleurs en variables en haut du fichier)
 │   └── js/
 │       ├── api.js            # récupère et simplifie les données de valorant-api.com
+│       ├── calculs-armes.js  # formules de la page Armes (balles pour tuer, TTK, DPS)
 │       ├── ui.js             # en-tête, pied de page, fonctions utilitaires
 │       ├── minimap.js        # minimap avec noms des zones et flèches de lineup
 │       ├── graphiques.js     # graphiques SVG faits maison (sans bibliothèque)
 │       └── accueil.js, agents.js, maps.js, meta.js, lineups.js, armes.js   # une page = un fichier
 ├── data/
 │   ├── lineups.json          # la base de lineups (à enrichir !)
-│   └── meta-maps.json        # agents conseillés par map, avec la raison
-├── scripts/valider_donnees.py  # vérifie les fichiers JSON
-└── .github/workflows/        # lance la vérification à chaque pull request
+│   ├── meta-maps.json        # agents conseillés par map, avec la raison
+│   └── api/                  # copie de secours de valorant-api.com
+├── scripts/
+│   ├── valider_donnees.py    # vérifie les fichiers JSON
+│   └── instantane_api.py     # met à jour la copie de secours de data/api/
+├── tests/                    # tests des calculs et du repli hors ligne (npm test)
+└── .github/workflows/        # lance la vérification et les tests à chaque pull request
 ```
 
 ## D'où viennent les données ?
 
-- **Agents, maps, armes, images** : [valorant-api.com](https://valorant-api.com), une API communautaire gratuite et sans clé. Les textes sont récupérés en français (`language=fr-FR`) et mis en cache 12 h dans le navigateur.
+- **Agents, maps, armes, images** : [valorant-api.com](https://valorant-api.com), une API communautaire gratuite et sans clé. Les textes sont récupérés en français (`language=fr-FR`) et mis en cache 12 h dans le navigateur. Si l'API ne répond pas, le site utilise la copie enregistrée dans `data/api/` et affiche un bandeau pour le signaler. Après un patch (nouvel agent, nouvelle map, équilibrage), mets cette copie à jour avec `python scripts/instantane_api.py`.
 - **Lineups et agents conseillés par map** : les fichiers du dossier `data/`, écrits à la main par les contributeurs.
 
 Les positions sur la minimap sont stockées entre 0 et 1 (0 = bord gauche ou haut, 1 = bord droit ou bas). Les noms des zones sont placés avec la formule de conversion fournie par l'API (`xMultiplier`, `xScalarToAdd`…), voir `versMinimap()` dans `assets/js/api.js`.
@@ -79,6 +84,12 @@ Pour vérifier tes modifications avant d'ouvrir une pull request :
 
 ```bash
 python scripts/valider_donnees.py
+```
+
+Si tu modifies le JavaScript, lance aussi les tests (Node.js 22 ou plus, rien à installer) :
+
+```bash
+npm test
 ```
 
 ## Idées pour la suite

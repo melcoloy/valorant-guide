@@ -1,5 +1,6 @@
 {
-  "_note": "Recommandations indicatives basées sur les tendances générales du jeu compétitif : au moins deux agents par rôle pour chaque map. La méta change à chaque patch : si une info est dépassée, propose une mise à jour via une pull request (voir CONTRIBUTING.md). \"aConfirmer\": true signale une analyse déduite de la forme de la map, pas encore de l'expérience en jeu. Les noms d'agents et de maps doivent être écrits exactement comme dans le jeu.",
+  "_note": "Recommandations indicatives basées sur les tendances générales du jeu compétitif : au moins deux agents par rôle pour chaque map. La méta change à chaque patch : si une info est dépassée, propose une mise à jour via une pull request (voir CONTRIBUTING.md). \"aConfirmer\": true signale une analyse déduite de la forme de la map, pas encore de l'expérience en jeu. Les noms d'agents et de maps doivent être écrits exactement comme dans le jeu. Change \"miseAJour\" (AAAA-MM-JJ) à chaque relecture.",
+  "miseAJour": "2026-11-04",
   "maps": {
     "Abyss": {
       "resume": "Map sans rebords : on peut tomber dans le vide sur les côtés. Elle est très verticale, avec des cordes et des passerelles.",

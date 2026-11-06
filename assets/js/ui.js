@@ -31,6 +31,19 @@ export function initPage(pageActive) {
       </nav>
     </div>`;
 
+  // api.js prévient quand valorant-api.com est injoignable et qu'il utilise
+  // la copie de secours de data/api/ : on l'affiche une seule fois sous l'en-tête.
+  window.addEventListener("valo-atlas:secours", (e) => {
+    if (document.getElementById("bandeau-secours")) return;
+    const quand = e.detail?.date ? ` du ${new Date(e.detail.date).toLocaleDateString("fr-FR")}` : "";
+    entete.insertAdjacentHTML(
+      "afterend",
+      `<div class="conteneur"><div class="note" id="bandeau-secours" role="status" style="margin:16px 0 0">
+        valorant-api.com ne répond pas : le site affiche une copie de ses données${echapper(quand)}.
+        Les images peuvent ne pas s'afficher.</div></div>`
+    );
+  });
+
   const pied = document.getElementById("pied");
   pied.className = "pied";
   pied.innerHTML = `

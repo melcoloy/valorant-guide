@@ -1,0 +1,9 @@
+{
+  "name": "valo-atlas",
+  "private": true,
+  "description": "Ce fichier sert seulement aux tests (npm test) : le site n'a besoin d'aucune installation.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}

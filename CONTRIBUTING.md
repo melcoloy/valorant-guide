@@ -67,6 +67,7 @@ Tout est dans `data/meta-maps.json`. Pour chaque map :
 - Le rôle de l'agent (contrôleur, initiateur…) est récupéré automatiquement : pas besoin de l'écrire.
 - La `compo` contient exactement 5 agents.
 - Une map absente du fichier s'affiche « À compléter » sur le site.
+- Après avoir relu ou corrigé le fichier, mets la date du jour dans `"miseAJour"` (format `AAAA-MM-JJ`). Elle s'affiche sur la page « Agents par map », et le script de vérification rappelle de relire la méta quand elle a plus de 90 jours.
 - `"aConfirmer": true` signale une analyse déduite de la forme de la map, pas encore de l'expérience en jeu (c'est le cas de Corrode et Summit). Le site affiche alors « À confirmer ». Si tu joues ces maps et que les conseils te semblent justes, ou après les avoir corrigés, retire cette ligne.
 
 ## Vérifier avant d'envoyer
@@ -80,3 +81,5 @@ Le script signale les erreurs de format, les noms d'agents ou de maps mal orthog
 ## Modifier le code
 
 Le site est fait en HTML, CSS et JavaScript (modules ES), sans framework ni étape de compilation. Chaque page a son fichier dans `assets/js/`. Les couleurs sont des variables CSS en haut de `assets/css/style.css`.
+
+Les calculs de la page Armes sont dans `assets/js/calculs-armes.js` et testés dans `tests/`. Lance `npm test` (Node.js 22 ou plus, rien à installer) avant d'envoyer une modification du JavaScript.

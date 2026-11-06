@@ -14,7 +14,16 @@ pull request.
 import json
 import sys
 import urllib.request
+from datetime import date
 from pathlib import Path
+
+# Sous Windows, la console utilise souvent un encodage (cp1252) qui ne sait pas
+# écrire les symboles ✓ ✗ ⚠️ : on force l'UTF-8 pour que le script ne plante pas.
+for flux in (sys.stdout, sys.stderr):
+    try:
+        flux.reconfigure(encoding="utf-8")
+    except (AttributeError, ValueError):
+        pass
 
 RACINE = Path(__file__).resolve().parent.parent
 CAMPS = {"attaque", "defense"}
@@ -22,6 +31,7 @@ SITES = {"A", "B", "C", "Mid"}
 SLOTS = {"Grenade", "Ability1", "Ability2", "Ultimate"}
 ROLES = ["Contrôleur", "Initiateur", "Sentinelle", "Duelliste"]
 MIN_PAR_ROLE = 2  # chaque map doit conseiller au moins 2 agents par rôle
+JOURS_AVANT_RELECTURE = 90  # au-delà, on rappelle de relire la méta
 
 erreurs = []
 
@@ -105,6 +115,15 @@ def verifier_meta(donnees, agents, maps):
     if not isinstance(donnees, dict) or not isinstance(donnees.get("maps"), dict):
         erreur('meta-maps.json : il faut un objet avec un dictionnaire "maps".')
         return
+    try:
+        mise_a_jour = date.fromisoformat(str(donnees.get("miseAJour")))
+    except ValueError:
+        erreur('meta-maps.json : « miseAJour » doit être une date au format AAAA-MM-JJ.')
+    else:
+        age = (date.today() - mise_a_jour).days
+        if age > JOURS_AVANT_RELECTURE:
+            # Simple rappel : ça ne fait pas échouer la vérification.
+            print(f"⚠️  meta-maps.json n'a pas été relu depuis {age} jours : la méta a peut-être changé.")
     for nom_map, infos in donnees["maps"].items():
         ou = f"meta-maps.json, map « {nom_map} »"
         if maps and nom_map not in maps:

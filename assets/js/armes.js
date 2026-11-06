@@ -1,14 +1,10 @@
 // ==========================================================================
 // Page Armes : analyse chiffrée à partir des statistiques du jeu.
 //
-// Vocabulaire :
-//   - PV : points de vie de la cible (100 + bouclier : 0, 25 ou 50)
-//   - balles pour tuer = arrondi supérieur de (PV / dégâts par balle)
-//   - TTK (time to kill) = temps entre la 1re et la dernière balle
-//                        = (balles - 1) / cadence de tir
-//   - DPS = dégâts par seconde = dégâts par balle × cadence
+// Les formules (balles pour tuer, TTK, DPS) sont dans calculs-armes.js.
 // ==========================================================================
 import { getArmes } from "./api.js";
+import { degats, ballesPourTuer, analyser as analyserArme } from "./calculs-armes.js";
 import { initPage, echapper, afficherChargement, afficherErreur, nombreFr } from "./ui.js";
 import { graphiqueCourbes, graphiqueBarres } from "./graphiques.js";
 
@@ -37,33 +33,9 @@ const etat = {
 let armes = [];
 const nettoyages = [];
 
-// --- Calculs -----------------------------------------------------------------
+// --- Calculs (voir calculs-armes.js) ----------------------------------------
 
-function palier(arme, distance) {
-  return arme.portees.find((p) => distance >= p.debut && distance < p.fin) || arme.portees[arme.portees.length - 1];
-}
-
-// Dégâts d'un tir à une distance donnée (fusils à pompe : tous les plombs touchent)
-function degats(arme, distance, zone) {
-  const p = palier(arme, distance);
-  return p ? p[zone] * arme.plombs : 0;
-}
-
-function analyser(arme) {
-  const dmg = degats(arme, etat.distance, etat.zone);
-  const balles = dmg > 0 ? Math.ceil(etat.pv / dmg) : Infinity;
-  const possible = balles <= arme.chargeur;
-  return {
-    arme,
-    dmg,
-    tete: degats(arme, etat.distance, "tete"),
-    corps: degats(arme, etat.distance, "corps"),
-    jambes: degats(arme, etat.distance, "jambes"),
-    balles,
-    ttk: possible ? ((balles - 1) / arme.cadence) * 1000 : null, // en millisecondes
-    dps: dmg * arme.cadence,
-  };
-}
+const analyser = (arme) => analyserArme(arme, etat);
 
 const formatTTK = (ms) => (ms === null ? "—" : ms === 0 ? "instantané" : `${nombreFr(ms)} ms`);
 
@@ -178,8 +150,8 @@ function dessinerConstats(analyses) {
   const p = armes.find((a) => a.nom === "Phantom");
   let debat = "";
   if (v && p) {
-    const bv = Math.ceil(etat.pv / degats(v, etat.distance, "tete"));
-    const bp = Math.ceil(etat.pv / degats(p, etat.distance, "tete"));
+    const bv = ballesPourTuer(degats(v, etat.distance, "tete"), etat.pv);
+    const bp = ballesPourTuer(degats(p, etat.distance, "tete"), etat.pv);
     debat = `
       <div class="constat">
         <div class="libelle">Vandal ou Phantom ? (tête, ${etat.distance} m)</div>
